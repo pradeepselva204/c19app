@@ -13,7 +13,7 @@ const CountryPicker=({handleCountryChange})=>{
     
     return(
         <FormControl className={styles.formControl}>
-            <FormLabel>Select the Country</FormLabel>
+            <FormLabel><bold>Select the Country</bold></FormLabel>
             <NativeSelect defaultValue='' onChange={(e)=>{handleCountryChange(e.target.value)}}>
                 <option value="">
                     Global
