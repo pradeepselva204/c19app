@@ -1,0 +1,13 @@
+.container{
+    display: grid;
+    margin: 2% 3%;
+    justify-content: center;
+    width: 50%;    
+    
+}
+
+@media(max-width: 770px){
+    .container{
+        width: 100%;
+    }
+}
