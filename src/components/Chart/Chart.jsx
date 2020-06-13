@@ -82,31 +82,6 @@ const Chart=({data,country})=>{
             
         ):null
     );    
-    const bubbleChart = (
-        data.confirmed ? (           
-            <Bubble data={{
-                labels: ['Infected', 'Recovered', 'Deaths'],
-                datasets: [
-                    { 
-                        label: 'People',
-                        backgroundColor: [
-                            'rgba(240, 149, 12, 0.911)',
-                            'rgba(21, 202, 172, 0.733)',
-                            'rgba(202, 21, 36, 0.733)'
-                        ],
-                        data: [data.confirmed.value, data.recovered.value,data.deaths.value]
-                     }
-                ]
-            }}
-                options={{ 
-                    legend: {display:false},
-                    title: { display: true,text:`Current Status in ${country}` },
-                 }}
-            
-            />
-            
-        ):null
-    );    
     const doughNut=(
         data.confirmed? (
             <Polar data={{
