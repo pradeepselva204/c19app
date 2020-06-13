@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import { fetchDailyData } from '../../api';
-import  {Line, Bar } from 'react-chartjs-2';
+import  {Line, Bar, Polar, Radar,Bubble } from 'react-chartjs-2';
 import styles from './Chart.module.css'
 
 const Chart=({data,country})=>{
@@ -33,7 +33,7 @@ const Chart=({data,country})=>{
     );
     console.log(data)
     const barChart = (
-        data.confirmed ? (
+        data.confirmed ? (           
             <Bar data={{
                 labels: ['Infected', 'Recovered', 'Deaths'],
                 datasets: [
@@ -54,11 +54,84 @@ const Chart=({data,country})=>{
                  }}
             
             />
+            
         ):null
     );
+    const radarChart = (
+        data.confirmed ? (           
+            <Radar data={{
+                labels: ['Infected', 'Recovered', 'Deaths'],
+                datasets: [
+                    { 
+                        label: 'People',
+                        backgroundColor: [
+                            'rgba(240, 149, 12, 0.911)',
+                            'rgba(21, 202, 172, 0.733)',
+                            'rgba(202, 21, 36, 0.733)'
+                        ],
+                        data: [data.confirmed.value, data.recovered.value,data.deaths.value]
+                     }
+                ]
+            }}
+                options={{ 
+                    legend: {display:false},
+                    title: { display: true,text:`Current Status in ${country}` },
+                 }}
+            
+            />
+            
+        ):null
+    );    
+    const bubbleChart = (
+        data.confirmed ? (           
+            <Bubble data={{
+                labels: ['Infected', 'Recovered', 'Deaths'],
+                datasets: [
+                    { 
+                        label: 'People',
+                        backgroundColor: [
+                            'rgba(240, 149, 12, 0.911)',
+                            'rgba(21, 202, 172, 0.733)',
+                            'rgba(202, 21, 36, 0.733)'
+                        ],
+                        data: [data.confirmed.value, data.recovered.value,data.deaths.value]
+                     }
+                ]
+            }}
+                options={{ 
+                    legend: {display:false},
+                    title: { display: true,text:`Current Status in ${country}` },
+                 }}
+            
+            />
+            
+        ):null
+    );    
+    const doughNut=(
+        data.confirmed? (
+            <Polar data={{
+                labels: ['Infected', 'Recovered', 'Deaths'],
+                datasets: [
+                    { 
+                        label: 'People',
+                        backgroundColor: [
+                            'rgba(240, 149, 12, 0.911)',
+                            'rgba(21, 202, 172, 0.733)',
+                            'rgba(202, 21, 36, 0.733)'
+                        ],
+                        data: [data.confirmed.value, data.recovered.value,data.deaths.value]
+                     }
+                ]                
+            }}
+
+            />
+        ):null
+    )
     return(
     <div className={styles.container}>
-        { country? (barChart): lineChart}
+        { country ?  barChart : lineChart}
+        { country ?  doughNut : null}
+        { country ?  radarChart : null}        
         </div>
     )
 }
